@@ -121,11 +121,6 @@
       <artifactId>c3p0</artifactId>
       <version>0.9.5.2</version>
     </dependency>
-    <!-- MyBatis -->
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-    </dependency>
     <!-- mybatis-spring整合包 -->
     <dependency>
       <groupId>org.mybatis</groupId>
