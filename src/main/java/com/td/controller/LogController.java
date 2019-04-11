@@ -1,5 +1,6 @@
 package com.td.controller;
 
+import com.td.common.CommonMsg;
 import com.td.pojo.Log;
 import com.td.pojo.User;
 import com.td.service.Impl.LogServiceImpl;
@@ -43,16 +44,21 @@ public class LogController {
     }
 
     @RequestMapping("/login")
-    public String login(HttpSession session,Model model, Log log) {
-        User user = new User();
-
-        model.addAttribute("login", logService.Login(log));
-
-        Integer id = log.getId();
-        String name = log.getName();
-        String passwd = log.getPasswd();
-        user.setId(id);
-        return "login";
+    public CommonMsg login(HttpSession session,String username, String password) {
+        System.out.println(username);
+        CommonMsg cm = new CommonMsg();
+        User findUser = logService.login(username);
+        if(findUser == null) {
+            cm.setMsg("账号不存在");
+            return cm;
+        }
+        if(findUser.getPassword() != password) {
+            cm.setMsg("账号或密码错误");
+            return cm;
+        }
+        cm.setMsg("success");
+        session.setAttribute("USER", findUser);
+        return cm;
     }
 
 

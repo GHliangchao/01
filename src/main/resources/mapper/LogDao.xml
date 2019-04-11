@@ -18,6 +18,10 @@
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="id" column="id"/>
+        <result property="planDesc" column="plan_desc"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="state" column="state"/>
     </resultMap>
 
     <select id="selectByName" parameterType="map" resultMap="userMap">
@@ -40,5 +44,9 @@
     <update id="updateLog" parameterType="com.td.pojo.Log">
         update workLog set name=#{name},plan_desc=#{plan_desc},state=#{state} where id=#{id}
     </update>
+
+    <select id="login" resultType="User" resultMap="userMap">
+        select * from user where username = #{username}
+    </select>
 
 </mapper>

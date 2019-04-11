@@ -1,6 +1,7 @@
 package com.td.service;
 
 import com.td.pojo.Log;
+import com.td.pojo.User;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface LogService {
 
     Log updateLog(Log log);
 
-    Log Login(Log user);
+    User login(String username);
 
     Log getUser(long id);
 }

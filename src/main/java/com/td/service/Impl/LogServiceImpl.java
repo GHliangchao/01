@@ -2,6 +2,7 @@ package com.td.service.Impl;
 
 import com.td.dao.LogDao;
 import com.td.pojo.Log;
+import com.td.pojo.User;
 import com.td.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class LogServiceImpl implements LogService {
 
     }
 
-    public Log Login(Log user) {
-        return logDao.Login(user);
+    public User login(String username) {
+        return logDao.login(username);
     }
 
     public Log getUser(long id) {
