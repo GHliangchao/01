@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LogController {
 
@@ -41,9 +43,18 @@ public class LogController {
     }
 
     @RequestMapping("/login")
-    public String login(Model model, User user) {
-        model.addAttribute("login", logService.Login(user));
+    public String login(HttpSession session,Model model, Log log) {
+        User user = new User();
+
+        model.addAttribute("login", logService.Login(log));
+
+        Integer id = log.getId();
+        String name = log.getName();
+        String passwd = log.getPasswd();
+        user.setId(id);
         return "login";
     }
+
+
 
 }

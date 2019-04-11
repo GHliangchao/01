@@ -8,17 +8,9 @@ public class Log {
     private String name;
     private String passwd;
     private String plan_desc;
-    private Date date;
+    private Date create_time;
+    private Date update_time;
     private String state;
-
-    public Log(Integer id, String name, String passwd, String plan_desc, Date date, String state) {
-        this.id = id;
-        this.name = name;
-        this.passwd = passwd;
-        this.plan_desc = plan_desc;
-        this.date = date;
-        this.state = state;
-    }
 
     public Integer getId() {
         return id;
@@ -52,12 +44,20 @@ public class Log {
         this.plan_desc = plan_desc;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreate_time() {
+        return create_time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
+    }
+
+    public Date getUpdate_time() {
+        return update_time;
+    }
+
+    public void setUpdate_time(Date update_time) {
+        this.update_time = update_time;
     }
 
     public String getState() {

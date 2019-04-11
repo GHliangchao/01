@@ -1,7 +1,6 @@
 package com.td.dao;
 
 import com.td.pojo.Log;
-import com.td.pojo.User;
 
 import java.util.List;
 
@@ -14,5 +13,7 @@ public interface LogDao {
 
     Log updateLog(Log log);
 
-    User Login(User user);
+    Log Login(Log user);
+
+    Log getUser(long id);
 }

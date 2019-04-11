@@ -2,7 +2,6 @@ package com.td.service.Impl;
 
 import com.td.dao.LogDao;
 import com.td.pojo.Log;
-import com.td.pojo.User;
 import com.td.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class LogServiceImpl implements LogService {
+
     @Autowired
     private LogDao logDao;
 
@@ -33,7 +33,11 @@ public class LogServiceImpl implements LogService {
 
     }
 
-    public User Login(User user) {
+    public Log Login(Log user) {
         return logDao.Login(user);
+    }
+
+    public Log getUser(long id) {
+        return logDao.getUser(id);
     }
 }
