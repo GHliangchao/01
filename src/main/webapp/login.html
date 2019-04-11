@@ -16,11 +16,11 @@
     <header class="layui-elip">后台登录</header>
     <form class="layui-form">
         <div class="layui-input-inline">
-            <input type="text" name="account" required lay-verify="required" placeholder="用户名" autocomplete="off"
+            <input type="text" id="username" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
+            <input type="password" id="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-input-inline login-btn">
@@ -40,15 +40,38 @@
 
 <script src="layUI/frame/layui/layui.js"></script>
 <script type="text/javascript">
+    localStorage.host = 'localhost:8080';
+</script>
+<script type="text/javascript">
     layui.use(['form'], function () {
-
-        // 操作对象
         var form = layui.form
-                , $ = layui.jquery;
-
-        // you code ...
-
-
+            , $ = layui.jquery
+            , layer = layui.layer;
+        form.on('submit(btn_login)', function (event) {
+            $.ajax('/login', {
+                data: event.field,
+                method: 'POST',
+                success: function (data) {
+                    if (data.code === 0) {
+                        //success
+                        layer.msg("登陆成功", {
+                            icon: 1, time: 1000, end: function () {
+                                window.location.reload();
+                            }
+                        });
+                    } else if (data.code === 101) {
+                        //user not found
+                        layer.msg(data.message, {icon: 2})
+                    } else if (data.code === 102) {
+                        //password wrong
+                        layer.msg(data.message, {icon: 2})
+                    } else {
+                        //unknown error
+                        layer.msg("未知错误", {icon: 2});
+                    }
+                }
+            });
+        })
     });
 </script>
 </body>
